@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.set("views", __dirname + "/views");
 app.set("view engine", "hbs");
-app.set("layout", __dirname + "/views/layout.hbs");
+app.set("view options", { layout: "layout.hbs" });
 
 // Routes 👇🏿👇🏿👇🏿
 // -------------------------------
