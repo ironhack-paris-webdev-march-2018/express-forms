@@ -1,7 +1,12 @@
+const bodyParser = require("body-parser");
 const express = require("express");
 const hbs = require("hbs");
 
 const app = express();
+
+app.use(express.static(__dirname + "/public"));
+// use "body-parser" to parse (analyze) the form body and create "req.body"
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.set("views", __dirname + "/views");
 app.set("view engine", "hbs");
@@ -46,6 +51,23 @@ app.get("/search", (req, res, next) => {
   }
   else {
     res.render("results-page");
+  }
+});
+
+app.get("/login", (req, res, next) => {
+  res.render("login-form");
+});
+
+app.post("/process-form", (req, res, next) => {
+  console.log("BODY", req.body);
+
+  if (req.body.username === "nizar" && req.body.thePassword === "swordfish") {
+    // if username and password match show welcome
+    res.render("welcome");
+  }
+  else {
+    // otherwise get the F out!
+    res.render("gtfo");
   }
 });
 // -------------------------------
